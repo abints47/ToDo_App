@@ -80,6 +80,13 @@ body {
   padding: 0;
 }
 
+.empty-state {
+  padding: 10px 0;
+  font-size: 14px;
+  color: #888;
+  text-align: center;
+}
+
 .todo-item {
   display: flex;
   align-items: flex-start;
@@ -97,8 +104,56 @@ body {
   font-size: 15px;
 }
 
+/* Let the text take the space so the delete button stays on the right */
+.task-content {
+  flex: 1;
+}
+
+/* Red delete button with a trash icon */
+.delete-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  color: #e53935;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #ffe5e5;
+  color: #b71c1c;
+}
+
+.delete-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
 .task-desc-text {
   margin: 4px 0 0;
   font-size: 13px;
   color: #666;
+}
+
+/* Hide the description when it is empty */
+.task-desc-text:empty {
+  display: none;
+}
+
+/* Completed task: strike through the text */
+.todo-item.completed .task-title-text,
+.todo-item.completed .task-desc-text {
+  text-decoration: line-through;
+  color: #999;
+}
+
+/* Make the checkbox easier to click */
+.check {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  cursor: pointer;
 }
