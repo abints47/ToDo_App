@@ -1,54 +1,105 @@
-*{
-    box-sizing: border-box;
-}
-body{
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-   
-}
-.container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.text-field{
-    width: 400px;
-    height: 30px;
-    border-radius: 20px;
-    outline: none;
-    padding-left: 20px;
-    border: 1px solid grey;
-}
-.heading{
-    padding-top: 20px;
-}
-.submit-btn{
-    height: 30px;
-    width: 80px;
-    border-radius: 20px;
-    border: 1px solid grey;
-}
-.task-div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50vh;
-    width: 100%;
-    margin-top: 10px;
-}
-.progress{
-  width: 600px;
-  padding: auto;
-  background-color: #f0f0f0;
+* {
+  box-sizing: border-box;
 }
 
-.todo-list{
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    gap: 20px;
-    padding-bottom: 20px;
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f9f9f9;
+  color: #222;
+}
 
+.container,
+.task-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heading {
+  margin-bottom: 16px;
+}
+
+/* Form Box & Task List Box */
+.input-card,
+.progress {
+  width: 100%;
+  max-width: 450px;
+  background-color: #fff;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.input-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Inputs */
+.text-field,
+.desc-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+}
+
+.text-field:focus,
+.desc-field:focus {
+  border-color: #333;
+}
+
+.desc-field {
+  resize: vertical;
+}
+
+/* Submit Button */
+.submit-btn {
+  padding: 10px;
+  background-color: #222;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #444;
+}
+
+.todo-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.todo-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.todo-item:last-child {
+  border-bottom: none;
+}
+
+.task-title-text {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.task-desc-text {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #666;
 }

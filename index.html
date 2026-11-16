@@ -3,38 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Todo App</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="container">
       <h2 class="heading">Todo App</h2>
-      <div>
-        <input class="text-field" type="text" placeholder="Enter Your Task.." />
-        <button class="submit-btn">Submit</button>
+
+      <!-- Grouped Input Form Card -->
+      <div class="input-card">
+        <input
+          class="text-field"
+          id="task-title"
+          type="text"
+          placeholder="Task Title..."
+        />
+        <textarea
+          class="desc-field"
+          id="task-desc"
+          rows="3"
+          placeholder="Enter task description..."
+        ></textarea>
+        <button class="submit-btn" id="myButton">Add Task</button>
       </div>
     </div>
 
     <!-- Task Progress container -->
     <div class="task-div">
       <div class="progress">
-        <ul>
-          <div class="todo-list">
+        <ul class="todo-list" id="todo-list">
+          <li class="todo-item">
             <input class="check" type="checkbox" />
-            <li>ToDo Sample Task</li>
-          </div>
-          <div class="todo-list">
-            <input class="check" type="checkbox" />
-            <li>ToDo Sample Task</li>
-          </div>
-          <div class="todo-list">
-            <input class="check" type="checkbox" />
-            <li>ToDo Sample Task</li>
-          </div>
-          <div class="todo-list">
-            <input class="check" type="checkbox" />
-            <li>ToDo Sample Task</li>
-          </div> >
+            <div class="task-content">
+              <span class="task-title-text">ToDo Sample Task</span>
+              <p class="task-desc-text">Sample description details go here.</p>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
