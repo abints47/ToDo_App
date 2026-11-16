@@ -4,4 +4,51 @@
 body{
     margin: 0;
     padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+   
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.text-field{
+    width: 400px;
+    height: 30px;
+    border-radius: 20px;
+    outline: none;
+    padding-left: 20px;
+    border: 1px solid grey;
+}
+.heading{
+    padding-top: 20px;
+}
+.submit-btn{
+    height: 30px;
+    width: 80px;
+    border-radius: 20px;
+    border: 1px solid grey;
+}
+.task-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    width: 100%;
+    margin-top: 10px;
+}
+.progress{
+  width: 600px;
+  padding: auto;
+  background-color: #f0f0f0;
+}
+
+.todo-list{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 20px;
+    padding-bottom: 20px;
+
 }
