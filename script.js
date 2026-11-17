@@ -1,4 +1,4 @@
-// Load saved tasks from localStorage (or start with an empty array)
+
 let tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
 
 // Page elements
@@ -8,13 +8,11 @@ const submitButton = document.getElementById("submitBtn");
 const todoList = document.getElementById("todo-list");
 
 
-// Save the task array to localStorage as JSON
+
 function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-
-// Draw all tasks on the page
 function showTasks() {
   todoList.innerHTML = "";
 
@@ -35,6 +33,7 @@ function showTasks() {
         <span class="task-title-text"></span>
         <p class="task-desc-text"></p>
       </div>
+      <button class="editBtn">edit</button>
       <button class="delete-btn" type="button" title="Delete task" aria-label="Delete task">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
              stroke-linecap="round" stroke-linejoin="round">
@@ -72,17 +71,16 @@ function showTasks() {
 }
 
 
-// Add a new task
 function addTask() {
   const title = titleInput.value.trim();
   const description = descInput.value.trim();
 
-  if (title === "") {
-    alert("Please type a task title.");
-    return;
-  }
+  if (!title ) return;
+    
 
   tasks.push({
+    id:Date.now(),
+    status: "pending",  
     title: title,
     description: description,
     done: false
@@ -98,5 +96,4 @@ function addTask() {
 
 submitButton.addEventListener("click", addTask);
 
-// Show saved tasks when the page opens
 showTasks();
