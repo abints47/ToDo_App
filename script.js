@@ -1,13 +1,11 @@
-
 let tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+let editIndex = null; 
 
 // Page elements
 const titleInput = document.getElementById("task-title");
 const descInput = document.getElementById("task-desc");
 const submitButton = document.getElementById("submitBtn");
 const todoList = document.getElementById("todo-list");
-
-
 
 function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -33,7 +31,7 @@ function showTasks() {
         <span class="task-title-text"></span>
         <p class="task-desc-text"></p>
       </div>
-      <button class="editBtn">edit</button>
+      <button class="editBtn" type="button">edit</button>
       <button class="delete-btn" type="button" title="Delete task" aria-label="Delete task">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
              stroke-linecap="round" stroke-linejoin="round">
@@ -46,22 +44,41 @@ function showTasks() {
       </button>
     `;
 
-    // Put the text in (textContent keeps it safe)
     item.querySelector(".task-title-text").textContent = task.title;
     item.querySelector(".task-desc-text").textContent = task.description;
 
-    // When the checkbox is clicked: update, save, and draw again
+    // When the checkbox is clicked
     const checkbox = item.querySelector(".check");
     checkbox.addEventListener("change", function () {
       tasks[i].done = checkbox.checked;
+      tasks[i].status = checkbox.checked ? "completed" : "pending";
       saveTasks();
       showTasks();
     });
 
-    // When the delete button is clicked: remove, save, and draw again
+
+    const editButton = item.querySelector(".editBtn");
+
+    editButton.addEventListener("click", function () {
+
+      titleInput.value = task.title;
+      descInput.value = task.description;
+      editIndex = i;
+      submitButton.textContent = "Update Task";
+      titleInput.focus(); 
+    });
+
     const deleteButton = item.querySelector(".delete-btn");
     deleteButton.addEventListener("click", function () {
       tasks.splice(i, 1);
+      
+      if (editIndex === i) {
+        editIndex = null;
+        submitButton.textContent = "Add Task";
+        titleInput.value = "";
+        descInput.value = "";
+      }
+
       saveTasks();
       showTasks();
     });
@@ -70,21 +87,27 @@ function showTasks() {
   }
 }
 
-
-function addTask() {
+function handleTaskSubmit() {
   const title = titleInput.value.trim();
   const description = descInput.value.trim();
 
-  if (!title ) return;
-    
+  if (!title) return;
 
-  tasks.push({
-    id:Date.now(),
-    status: "pending",  
-    title: title,
-    description: description,
-    done: false
-  });
+  if (editIndex !== null) {
+    tasks[editIndex].title = title;
+    tasks[editIndex].description = description;
+    
+    editIndex = null;
+    submitButton.textContent = "Add Task";
+  } else {
+    tasks.push({
+      id: Date.now(),
+      status: "pending",
+      title: title,
+      description: description,
+      done: false
+    });
+  }
 
   saveTasks();
   showTasks();
@@ -93,7 +116,6 @@ function addTask() {
   descInput.value = "";
 }
 
-
-submitButton.addEventListener("click", addTask);
+submitButton.addEventListener("click", handleTaskSubmit);
 
 showTasks();
