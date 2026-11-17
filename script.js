@@ -1,5 +1,18 @@
 let tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
-let editIndex = null; 
+let editIndex = null;
+
+function copyTasksToClipboard() {
+  const box = document.createElement("textarea");
+  box.value = JSON.stringify(tasks);
+  box.style.position = "fixed";
+  box.style.opacity = "0";
+  document.body.appendChild(box);
+  box.select();
+  try {
+    document.execCommand("copy");
+  } catch {}
+  box.remove();
+}
 
 // Page elements
 const titleInput = document.getElementById("task-title");
@@ -9,6 +22,7 @@ const todoList = document.getElementById("todo-list");
 
 function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
+  copyTasksToClipboard();
 }
 
 function showTasks() {
@@ -119,3 +133,7 @@ function handleTaskSubmit() {
 submitButton.addEventListener("click", handleTaskSubmit);
 
 showTasks();
+
+if (tasks.length > 0) {
+  copyTasksToClipboard();
+}

@@ -1,23 +1,27 @@
-import fs from 'node:fs';
+const fs = require("fs");
+const { execSync } = require("child_process");
 
-function readJsonFile() {
-    const rawData = fs.readFileSync('./data.json', 'utf8');
-    const jsonData = JSON.parse(rawData);
-    console.log(jsonData);
+const DATA_FILE = "data.json";
+
+function readClipboard() {
+  return execSync("powershell -NoProfile -Command Get-Clipboard", {
+    encoding: "utf8",
+  });
 }
 
-function addJsonFile(newDescription) {
-    const rawData = fs.readFileSync('./data.json', 'utf8');
-    const jsonData = JSON.parse(rawData);
-
-    jsonData.description = newDescription;
-
-    const updateRawData = JSON.stringify(jsonData, null, 2);
-
-    fs.writeFileSync('./data.json', updateRawData, 'utf8');
-
-    console.log("Updated Successfully:", jsonData);
+function writeTasks(tasks) {
+  fs.writeFileSync(DATA_FILE, JSON.stringify(tasks, null, 2), "utf8");
 }
 
-addJsonFile("This is a new Description");
-readJsonFile();
+try {
+  const tasks = JSON.parse(readClipboard());
+
+  if (!Array.isArray(tasks)) {
+    throw new Error("not a task list");
+  }
+
+  writeTasks(tasks);
+  console.log("Saved " + tasks.length + " task(s) to data.json");
+} catch {
+  console.log("No task list on the clipboard. Add a task in the browser first.");
+}
