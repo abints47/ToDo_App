@@ -1,1 +1,30 @@
-[]
+[
+  {
+    "id": 1794897059114,
+    "status": "pending",
+    "title": "Finish Node.js project",
+    "description": "Store tasks in data.json using fs",
+    "done": false
+  },
+  {
+    "id": 1794897059122,
+    "status": "pending",
+    "title": "Buy groceries",
+    "description": "Milk, eggs, and rice",
+    "done": false
+  },
+  {
+    "id": 1794897122207,
+    "status": "pending",
+    "title": "Finish Node.js project",
+    "description": "Store tasks in data.json using fs",
+    "done": false
+  },
+  {
+    "id": 1794897122220,
+    "status": "pending",
+    "title": "Buy groceries",
+    "description": "Milk, eggs, and rice",
+    "done": false
+  }
+]
