@@ -10,7 +10,7 @@ function readClipboard() {
 }
 
 function writeTasks(tasks) {
-  fs.writeFileSync(DATA_FILE, JSON.stringify(tasks, null, 2), "utf8");
+  fs.writeFileSync(DATA_FILE, JSON.stringify(tasks, null, 1 ), "utf8");
 }
 
 try {
